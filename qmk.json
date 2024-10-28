@@ -1,4 +1,9 @@
 {
     "userspace_version": "1.0",
-    "build_targets": []
+    "build_targets": [
+        ["handwired/lk52s", "default"],
+        ["handwired/lk52lite", "default"],
+        ["handwired/lk12", "default"],
+        ["handwired/lk12", "rotate90"]
+    ]
 }
