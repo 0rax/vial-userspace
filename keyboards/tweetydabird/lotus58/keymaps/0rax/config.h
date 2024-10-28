@@ -28,4 +28,4 @@
 #define OLED_DISPLAY_64X128
 #define OLED_BRIGHTNESS 48
 #define OLED_UPDATE_INTERVAL 100
-#define OLED_FONT_H "keyboards/tweetydabird/lotus58/keymaps/orax/glcdfont.c"
+#define OLED_FONT_H "keyboards/tweetydabird/lotus58/keymaps/0rax/glcdfont.c"
