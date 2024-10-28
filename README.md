@@ -39,6 +39,13 @@ This is a template repository which allows for an external set of QMK keymaps to
 
 Alternatively, if you configured your build targets above, you can use `qmk userspace-compile` to build all of your userspace targets at once.
 
+To setup the "vendored" version of VIAL (QMK fork used by this repository) and your QMK config properly all at once, run the following commands:
+
+```sh
+qmk config user.overlay_dir="$(realpath .)"
+qmk config user.qmk_home="$(realpath ./qmk_firmware)"
+```
+
 ## Extra info
 
 If you wish to point GitHub actions to a different repository, a different branch, or even a different keymap name, you can modify `.github/workflows/build_binaries.yml` to suit your needs.
@@ -46,14 +53,14 @@ If you wish to point GitHub actions to a different repository, a different branc
 To override the `build` job, you can change the following parameters to use a different QMK repository or branch:
 ```
     with:
-      qmk_repo: qmk/qmk_firmware
-      qmk_ref: master
+      qmk_repo: vial-kb/vial-qmk
+      qmk_ref: vial
 ```
 
 If you wish to manually manage `qmk_firmware` using git within the userspace repository, you can add `qmk_firmware` as a submodule in the userspace directory instead. GitHub Actions will automatically use the submodule at the pinned revision if it exists, otherwise it will use the default latest revision of `qmk_firmware` from the main repository.
 
 This can also be used to control which fork is used, though only upstream `qmk_firmware` will have support for external userspace until other manufacturers update their forks.
 
-1. (First time only) `git submodule add https://github.com/qmk/qmk_firmware.git`
+1. (First time only) `git submodule add -b vial https://github.com/vial-kb/vial-qmk qmk_firmware`
 1. (To update) `git submodule update --init --recursive`
 1. Commit your changes to your userspace repository
