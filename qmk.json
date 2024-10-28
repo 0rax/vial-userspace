@@ -1,10 +1,11 @@
 {
-    "userspace_version": "1.0",
+    "userspace_version": "1.1",
     "build_targets": [
-        ["tweetydabird/lotus58/promicro", "0rax"],
-        ["dz60", "0rax"],
+        ["xiudi/xd60/rev2", "0rax"],
         ["idobao/id75/v1", "0rax"],
         ["idobao/id75/v1", "0rax_regular"],
-        ["idobao/id75/v1", "0rax_split"]
+        ["idobao/id75/v1", "0rax_split"],
+        ["dz60", "0rax"],
+        ["tweetydabird/lotus58/promicro", "0rax"]
     ]
 }
