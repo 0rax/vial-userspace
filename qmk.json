@@ -6,6 +6,8 @@
         ["idobao/id75/v1", "0rax_regular"],
         ["idobao/id75/v1", "0rax_split"],
         ["dz60", "0rax"],
-        ["tweetydabird/lotus58/promicro", "0rax"]
+        ["tweetydabird/lotus58/promicro", "0rax"],
+        ["40percentclub/4x4", "4x4numpad"],
+        ["40percentclub/4x4", "4x4funpad"]
     ]
 }
