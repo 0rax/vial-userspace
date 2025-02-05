@@ -43,7 +43,7 @@ To setup the "vendored" version of VIAL (QMK fork used by this repository) and y
 
 ```sh
 qmk config user.overlay_dir="$(realpath .)"
-qmk config user.qmk_home="$(realpath ./qmk_firmware)"
+qmk config user.qmk_home="$(realpath ./vial-qmk)"
 ```
 
 ## Extra info

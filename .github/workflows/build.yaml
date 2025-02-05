@@ -1,0 +1,55 @@
+name: Build Firmware
+
+on: ["push"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: qmkfm/base_container
+
+    steps:
+      - name: Checkout Userspace
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install QMK CLI
+        run: |
+          python3 -m pip install --upgrade qmk
+          python3 -m pip install -r vial-qmk/requirements.txt
+
+      - name: Configure QMK CLI
+        run: |
+          qmk config userspace_compile.parallel=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null)
+          qmk config user.qmk_home=$GITHUB_WORKSPACE/vial-qmk
+          qmk config user.overlay_dir=$GITHUB_WORKSPACE
+
+      - name: Validate Userspace
+        run: |
+          qmk setup
+
+      - name: Build Firmwares
+        run: |
+          qmk userspace-compile -e DUMP_CI_METADATA=yes || touch .failed
+          # Generate the step summary markdown
+          ./vial-qmk/util/ci/generate_failure_markdown.sh > $GITHUB_STEP_SUMMARY || true
+          # Truncate to a maximum of 1MB to deal with GitHub workflow limit
+          truncate --size='<960K' $GITHUB_STEP_SUMMARY || true
+          # Exit with failure if the compilation stage failed
+          [ ! -f .failed ] || exit 1
+
+      - name: Upload Binaries
+        uses: actions/upload-artifact@v4
+        if: always() && !cancelled()
+        continue-on-error: true
+        with:
+          name: Firmware
+          path: |
+            *.bin
+            *.hex
+            *.uf2
+
+# Adapted from https://github.com/qmk/.github/blob/main/.github/workflows/qmk_userspace_build.yml

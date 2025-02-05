@@ -1,4 +1,4 @@
-[submodule "qmk_firmware"]
-	path = qmk_firmware
+[submodule "vial-qmk"]
+	path = vial-qmk
 	url = https://github.com/vial-kb/vial-qmk
 	branch = vial
