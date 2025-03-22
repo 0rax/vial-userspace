@@ -10,6 +10,7 @@
         ["40percentclub/4x4", "4x4numpad"],
         ["40percentclub/4x4", "4x4funpad"],
         ["40percentclub/5x5", "5x5numpad"],
-        ["40percentclub/5x5", "5x5gamepad"]
+        ["40percentclub/5x5", "5x5gamepad"],
+        ["lambdakb/lt6c", "vial"]
     ]
 }
